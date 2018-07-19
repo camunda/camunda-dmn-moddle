@@ -10,7 +10,7 @@ Use it together with [dmn-moddle](https://github.com/bpmn-io/dmn-moddle) to vali
 ```javascript
 var DmnModdle = require('dmn-moddle');
 
-var camundaModdle = require('camunda-bpmn-moddle/resources/camunda');
+var camundaModdle = require('camunda-dmn-moddle/resources/camunda');
 
 var moddle = new DmnModdle({ camunda: camundaModdle });
 
