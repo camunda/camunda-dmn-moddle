@@ -1,5 +1,7 @@
 # camunda-dmn-moddle
 
+[![Build Status](https://travis-ci.org/camunda/camunda-dmn-moddle.svg)](https://travis-ci.org/camunda/camunda-dmn-moddle)
+
 This project defines the [Camunda](https://camunda.org) namespace extensions for DMN 1.1 as a [moddle](https://github.com/bpmn-io/moddle) descriptor.
 
 
