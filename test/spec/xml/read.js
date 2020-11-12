@@ -108,6 +108,30 @@ describe('read', function() {
 
     });
 
+
+    describe('camunda:diagramRelationId', function() {
+
+      it('on Definitions', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/definitions-diagramRelationId.part.dmn');
+
+        // when
+        moddle.fromXML(xml, 'dmn:Definitions', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'dmn:Definitions',
+            diagramRelationId: 'foo'
+          });
+
+          done(err);
+        });
+
+      });
+
+    });
+
   });
 
 });
