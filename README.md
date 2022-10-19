@@ -1,6 +1,6 @@
 # camunda-dmn-moddle
 
-[![Build Status](https://travis-ci.com/camunda/camunda-dmn-moddle.svg)](https://travis-ci.com/camunda/camunda-dmn-moddle)
+[![CI](https://github.com/camunda/camunda-dmn-moddle/workflows/CI/badge.svg)](https://github.com/camunda/camunda-dmn-moddle/actions?query=workflow%3ACI)
 
 This project defines the [Camunda](https://camunda.org) namespace extensions for DMN 1.1 as a [moddle](https://github.com/bpmn-io/moddle) descriptor.
 
