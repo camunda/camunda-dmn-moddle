@@ -6,6 +6,10 @@ All notable changes to [camunda-dmn-moddle](https://github.com/camunda/camunda-d
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.2.0
+
+* `FEAT`: support any DMN version
+
 ## 1.1.0
 
 * `FEAT`: add `camunda:diagramRelationId` extension ([#4](https://github.com/camunda/camunda-dmn-moddle/pull/4))

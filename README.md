@@ -2,12 +2,12 @@
 
 [![CI](https://github.com/camunda/camunda-dmn-moddle/workflows/CI/badge.svg)](https://github.com/camunda/camunda-dmn-moddle/actions?query=workflow%3ACI)
 
-This project defines the [Camunda](https://camunda.org) namespace extensions for DMN 1.1 as a [moddle](https://github.com/bpmn-io/moddle) descriptor.
+This project defines the [Camunda](https://camunda.org) namespace extensions for DMN as a [moddle](https://github.com/bpmn-io/moddle) descriptor.
 
 
 ## Usage
 
-Use it together with [dmn-moddle](https://github.com/bpmn-io/dmn-moddle) to validate Camunda DMN 1.1 extensions.
+Use it together with [dmn-moddle](https://github.com/bpmn-io/dmn-moddle) to validate Camunda DMN extensions.
 
 ```javascript
 var DmnModdle = require('dmn-moddle');
