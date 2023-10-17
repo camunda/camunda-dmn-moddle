@@ -1,7 +1,7 @@
 'use strict';
 
-var readFile = require('../../helper').readFile,
-    createModdle = require('../../helper').createModdle;
+const readFile = require('../../helper').readFile,
+      createModdle = require('../../helper').createModdle;
 
 
 
@@ -16,30 +16,18 @@ describe('import -> export roundtrip', function() {
 
   function validateExport(file) {
 
-    return function(done) {
+    return async function() {
 
-      var xml = stripSpaces(readFile(file));
+      const xml = stripSpaces(readFile(file));
 
-      var moddle = createModdle();
+      const moddle = createModdle();
 
-      moddle.fromXML(xml, 'dmn:Definitions', function(err, definitions) {
-        if (err) {
-          return done(err);
-        }
+      const { rootElement } = await moddle.fromXML(xml, 'dmn:Definitions');
 
-        moddle.toXML(definitions, function(err, savedXML) {
+      const { xml: savedXML } = await moddle.toXML(rootElement);
 
-          if (err) {
-            return done(err);
-          }
+      expect(stripSpaces(savedXML)).to.eql(xml);
 
-          savedXML = stripSpaces(savedXML);
-
-          expect(savedXML).to.eql(xml);
-
-          done();
-        });
-      });
     };
   }
 

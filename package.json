@@ -9,7 +9,7 @@
     "all": "run-s lint test",
     "lint": "eslint .",
     "dev": "npm test -- --watch",
-    "test": "mocha -r esm -r ./test/expect --reporter=spec --recursive test"
+    "test": "mocha -r ./test/expect --reporter=spec --recursive test"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "keywords": [
     "dmn",
     "moddle",
-    "dmn11",
+    "dmn13",
     "camunda",
     "meta-model"
   ],
@@ -34,19 +34,16 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "async": "^2.6.0",
-    "chai": "^4.1.2",
-    "dmn-moddle": "^5.0.0",
-    "eslint": "^8.25.0",
-    "eslint-plugin-bpmn-io": "^0.5.2",
+    "chai": "^4.3.10",
+    "dmn-moddle": "^10.0.0",
+    "eslint": "^8.51.0",
+    "eslint-plugin-bpmn-io": "^1.0.0",
     "esm": "^3.0.15",
-    "glob": "^7.1.2",
-    "jsondiffpatch": "^0.2.5",
-    "mocha": "^4.0.1",
+    "mocha": "^10.2.0",
     "npm-run-all": "^4.1.2",
-    "xsd-schema-validator": "^0.5.0"
+    "xsd-schema-validator": "^0.7.0"
   },
   "dependencies": {
-    "min-dash": "^3.0.0"
+    "min-dash": "^4.1.1"
   }
 }

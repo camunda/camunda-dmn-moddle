@@ -10,7 +10,7 @@ function readFile(filename) {
 module.exports.readFile = readFile;
 
 
-var DmnModdle = require('dmn-moddle').default;
+var DmnModdle = require('dmn-moddle');
 
 var camundaDescriptor = require('../resources/camunda');
 

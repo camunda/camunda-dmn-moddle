@@ -1,97 +1,86 @@
 'use strict';
 
-var assign = require('min-dash').assign,
-    isFunction = require('min-dash').isFunction;
+const assign = require('min-dash').assign;
 
-var Helper = require('../../helper');
+const Helper = require('../../helper');
 
 
 describe('write', function() {
 
-  var moddle = Helper.createModdle();
+  const moddle = Helper.createModdle();
 
 
-  function write(element, options, callback) {
-    if (isFunction(options)) {
-      callback = options;
-      options = {};
-    }
+  function write(element, options = {}) {
 
     // skip preamble for tests
     options = assign({ preamble: false }, options);
 
-    moddle.toXML(element, options, callback);
+    return moddle.toXML(element, options).then(({ xml }) => xml);
   }
 
 
   describe('should export types', function() {
 
-    it('historyTimeToLive', function(done) {
+    it('historyTimeToLive', async function() {
 
       // given
-      var decision = moddle.create('dmn:Decision', {
+      const decision = moddle.create('dmn:Decision', {
         historyTimeToLive: 'foo'
       });
 
-      var expectedXML = [
-        '<dmn:decision xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd"',
+      const expectedXML = [
+        '<dmn:decision xmlns:dmn="https://www.omg.org/spec/DMN/20191111/MODEL/"',
         'xmlns:camunda="http://camunda.org/schema/1.0/dmn"',
         'camunda:historyTimeToLive="foo" />'
       ].join(' ');
 
       // when
-      write(decision, function(err, result) {
-        // then
-        expect(result).to.eql(expectedXML);
+      const result = await write(decision);
 
-        done(err);
-      });
+      // then
+      expect(result).to.eql(expectedXML);
     });
 
 
-    it('versionTag', function(done) {
+    it('versionTag', async function() {
 
       // given
-      var decision = moddle.create('dmn:Decision', {
+      const decision = moddle.create('dmn:Decision', {
         versionTag: '0.1.0'
       });
 
-      var expectedXML = [
-        '<dmn:decision xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd"',
+      const expectedXML = [
+        '<dmn:decision xmlns:dmn="https://www.omg.org/spec/DMN/20191111/MODEL/"',
         'xmlns:camunda="http://camunda.org/schema/1.0/dmn"',
         'camunda:versionTag="0.1.0" />'
       ].join(' ');
 
       // when
-      write(decision, function(err, result) {
-        // then
-        expect(result).to.eql(expectedXML);
+      const result = await write(decision);
 
-        done(err);
-      });
+      // then
+      expect(result).to.eql(expectedXML);
     });
 
 
-    it('inputVariable', function(done) {
+    it('inputVariable', async function() {
 
       // given
-      var inputClause = moddle.create('dmn:InputClause', {
+      const inputClause = moddle.create('dmn:InputClause', {
         inputVariable: 'foobar'
       });
 
-      var expectedXML = [
-        '<dmn:inputClause xmlns:dmn="http://www.omg.org/spec/DMN/20151101/dmn.xsd"',
+      const expectedXML = [
+        '<dmn:inputClause xmlns:dmn="https://www.omg.org/spec/DMN/20191111/MODEL/"',
         'xmlns:camunda="http://camunda.org/schema/1.0/dmn"',
         'camunda:inputVariable="foobar" />'
       ].join(' ');
 
       // when
-      write(inputClause, function(err, result) {
-        // then
-        expect(result).to.eql(expectedXML);
+      const result = await write(inputClause);
 
-        done(err);
-      });
+      // then
+      expect(result).to.eql(expectedXML);
     });
 
   });

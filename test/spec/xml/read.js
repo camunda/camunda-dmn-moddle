@@ -1,15 +1,15 @@
 'use strict';
 
 
-var readFile = require('../../helper').readFile,
-    createModdle = require('../../helper').createModdle;
+const readFile = require('../../helper').readFile,
+      createModdle = require('../../helper').createModdle;
 
 
 describe('read', function() {
 
   describe('should read extensions', function() {
 
-    var moddle;
+    let moddle;
 
     beforeEach(function() {
       moddle = createModdle();
@@ -18,25 +18,19 @@ describe('read', function() {
 
     describe('camunda:historyTimeToLive', function() {
 
-      it('on Decision', function(done) {
+      it('on Decision', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/decision-camunda-historyTimeToLive.part.dmn');
+        const xml = readFile('test/fixtures/xml/decision-camunda-historyTimeToLive.part.dmn');
 
         // when
-        moddle.fromXML(xml, 'dmn:Decision', function(err, proc) {
+        const { rootElement } = await moddle.fromXML(xml, 'dmn:Decision');
 
-          // then
-          expect(err).to.be.undefined;
-          expect(proc).to.jsonEqual({
-            $type : 'dmn:Decision',
-            historyTimeToLive : 'foo'
-          });
-
-          done(err);
-
+        // then
+        expect(rootElement).to.jsonEqual({
+          $type : 'dmn:Decision',
+          historyTimeToLive : 'foo'
         });
-
       });
 
     });
@@ -44,25 +38,19 @@ describe('read', function() {
 
     describe('camunda:versionTag', function() {
 
-      it('on Decision', function(done) {
+      it('on Decision', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/decision-camunda-versionTag.part.dmn');
+        const xml = readFile('test/fixtures/xml/decision-camunda-versionTag.part.dmn');
 
         // when
-        moddle.fromXML(xml, 'dmn:Decision', function(err, proc) {
+        const { rootElement } = await moddle.fromXML(xml, 'dmn:Decision');
 
-          // then
-          expect(err).to.be.undefined;
-          expect(proc).to.jsonEqual({
-            $type : 'dmn:Decision',
-            versionTag : '1.0.0'
-          });
-
-          done(err);
-
+        // then
+        expect(rootElement).to.jsonEqual({
+          $type : 'dmn:Decision',
+          versionTag : '1.0.0'
         });
-
       });
 
     });
@@ -70,62 +58,51 @@ describe('read', function() {
 
     describe('camunda:inputVariable', function() {
 
-      it('on InputClause', function(done) {
+      it('on InputClause', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/inputClause-camunda-inputVariable.part.dmn');
+        const xml = readFile('test/fixtures/xml/inputClause-camunda-inputVariable.part.dmn');
 
         // when
-        moddle.fromXML(xml, 'dmn:Definitions', function(err, proc) {
+        const { rootElement } = await moddle.fromXML(xml, 'dmn:Definitions');
+        const expected = {
+          $type: 'dmn:Decision',
+          id: 'decision',
+          name: 'Dish',
+          decisionLogic: {
+            $type: 'dmn:DecisionTable',
+            id: 'decisionTable',
+            input: [
+              {
+                $type: 'dmn:InputClause',
+                id: 'input1',
+                label: 'Season',
+                inputVariable: 'currentSeason'
+              }
+            ]
+          }
+        };
 
-          var expected = {
-            $type: 'dmn:Decision',
-            id: 'decision',
-            name: 'Dish',
-            decisionTable: {
-              $type: 'dmn:DecisionTable',
-              id: 'decisionTable',
-              input: [
-                {
-                  $type: 'dmn:InputClause',
-                  id: 'input1',
-                  label: 'Season',
-                  inputVariable: 'currentSeason'
-                }
-              ]
-            }
-          };
-
-          // then
-          expect(err).to.be.undefined;
-          expect(proc.drgElements[0]).to.jsonEqual(expected);
-
-          done(err);
-
-        });
-
+        // then
+        expect(rootElement.drgElement[0]).to.jsonEqual(expected);
       });
-
     });
 
 
     describe('camunda:diagramRelationId', function() {
 
-      it('on Definitions', function(done) {
+      it('on Definitions', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/definitions-diagramRelationId.part.dmn');
+        const xml = readFile('test/fixtures/xml/definitions-diagramRelationId.part.dmn');
 
         // when
-        moddle.fromXML(xml, 'dmn:Definitions', function(err, definition) {
+        const { rootElement } = await moddle.fromXML(xml, 'dmn:Definitions');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'dmn:Definitions',
-            diagramRelationId: 'foo'
-          });
-
-          done(err);
+        // then
+        expect(rootElement).to.jsonEqual({
+          $type: 'dmn:Definitions',
+          diagramRelationId: 'foo'
         });
 
       });

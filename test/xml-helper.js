@@ -2,7 +2,7 @@
 
 var SchemaValidator = require('xsd-schema-validator');
 
-var DMN_XSD = 'test/fixtures/xsd/DMN11.xsd';
+var DMN_XSD = 'test/fixtures/xsd/DMN13.xsd';
 
 var Helper = require('./helper');
 

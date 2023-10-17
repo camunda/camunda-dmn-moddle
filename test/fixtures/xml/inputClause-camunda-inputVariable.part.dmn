@@ -1,6 +1,6 @@
 <definitions id="definitions"
              name="definitions"
-             xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd"
+             xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/"
              xmlns:camunda="http://camunda.org/schema/1.0/dmn"
              namespace="http://camunda.org/schema/1.0/dmn">
   <decision id="decision" name="Dish">
