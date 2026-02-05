@@ -1,6 +1,6 @@
 'use strict';
 
-var DmnModdle = require('dmn-moddle');
+var { DmnModdle } = require('dmn-moddle');
 
 var camundaDescriptor = require('../../resources/camunda');
 
