@@ -6,6 +6,11 @@ All notable changes to [camunda-dmn-moddle](https://github.com/camunda/camunda-d
 
 ___Note:__ Yet to be released changes appear here._
 
+## 1.3.1
+
+* `FEAT`: support `dmn-moddle@12`
+* `DEPS`: remove unused `min-dash` dependency
+
 ## 1.3.0
 
 * `FEAT`: support `dmn-moddle@10`
