@@ -1,7 +1,7 @@
-var chai = require('chai');
+var { use: chaiUse, expect } = require('chai');
 
 // add matchers
-chai.use(require('./matchers'));
+chaiUse(require('./matchers'));
 
 // expose expect as global
-global.expect = chai.expect;
+global.expect = expect;
